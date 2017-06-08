@@ -1,0 +1,342 @@
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{user.name}}</span>
+                        <b>{{user.email}}</b>
+                        <br>
+                        <br>
+                        <p class="left-align">
+                            <b>Pricing Info:</b>
+                            <br> House Rent : &#8377;{{userbills.data.pricing.house_rent}}
+                            <br> Electricity Unit Charge : &#8377;{{userbills.data.pricing.elec_unit_charge}}
+                            <br> Water Charges : &#8377;{{userbills.data.pricing.water_charge}}
+                            <br>
+                        </p>
+                        <br>
+                        <a class="waves-effect waves-light btn center-align" data-ng-click="generateUserBill()">Generate Bill</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bill-list" data-ng-show="userbills.view.showBillList">
+                <div class="col s12 m8">
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li data-ng-repeat="bill in userbills.data.bills">
+                            <div class="collapsible-header"><i class="material-icons">description</i>{{bill.bill_st_dt | convertdate }}</div>
+                            <div class="collapsible-body">
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Period</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        {{bill.bill_st_dt | convertdate}} - {{bill.bill_ed_dt | convertdate}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>House Rent</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        &#8377; {{bill.house_rent}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Electricity Bill</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        &#8377; {{bill.electricity_bill}}
+                                        <br> (Units Consumed : {{bill.elec_units_consumed}})
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Water Bill</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        &#8377; {{bill.water_charge}}
+                                    </div>
+                                </div>
+                                <div class="row" data-ng-if="bill.other_charge_applied">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Others</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        &#8377; {{bill.other_charge}}
+                                        <br> ({{bill.other_charge_comment}})
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Total</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        &#8377; {{bill.total_bill}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Status</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <a href class="chip ng-binding" data-ng-class="{'blue-text':bill.status=='NEW', 'red-text':bill.status=='PENDING', 'green-text':bill.status=='PAID'}" data-ng-click="updateStatus.init(bill._id,$index)">            
+
+                                  {{bill.status}}
+
+                              </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m12 offset-m8">
+                                        <button class="waves-effect waves-light btn right-align" data-ng-click="downloadBill(bill)">Download</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="new-bill-1" data-ng-show="userbills.view.newBill1">
+                <div class="col s12 m8">
+                    <div class="card">
+                        <div class="card-content">
+                            <form data-ng-submit="initNewBillData()">
+
+                                <div class="row">
+                                    <div class="col s6">
+                                        <span class="card-title">Generate Bill</span>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="switch right">
+                                            <label>
+                                                <input type="checkbox" data-ng-model="userbills.useStandardPricing">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Bill Date</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="fromdate">From</label>
+                                        <input id="fromdate" type="date" data-ng-model="userbills.newbill.bill_st_dt" class="datepicker">
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="todate">To</label>
+                                        <input id="todate" type="date" data-ng-model="userbills.newbill.bill_ed_dt" class="datepicker">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>House Rent</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        <input type="number" data-ng-model="userbills.newbill.house_rent" min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Electricity Bill</label></b>
+                                    </div>
+
+                                    <div class="input-field col s12 m4">
+                                        <label for="readingstart">Last Reading</label>
+                                        <input id="readingstart" type="number" data-ng-model="userbills.newbill.elec_last_reading" min="0" class="validate" required>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="readingend">New Reading</label>
+                                        <input id="readingend" type="number" data-ng-model="userbills.newbill.elec_new_reading" min="0" class="validate" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="readingfromdate">Last Reading Date</label>
+                                        <input id="readingfromdate" type="date" data-ng-model="userbills.newbill.elec_new_reading_dt" class="datepicker">
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="readingtodate">New Reading Date</label>
+                                        <input id="readingtodate" type="date" data-ng-model="userbills.newbill.elec_last_reading_dt" class="datepicker">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Per Unit Charge</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        <input type="number" data-ng-model="userbills.newbill.elec_unit_charge" min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <b><label>Water Bill</label></b>
+                                    </div>
+                                    <div class="input-field col s12 m8">
+                                        <input type="number" data-ng-model="userbills.newbill.water_charge  " min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="userbills.newbill.other_charge_applied" checked="checked" />
+                                        <label for="filled-in-box">Others Charges</label>
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="othcharge">Amount</label>
+                                        <input id="othcharge" type="number" data-ng-model="userbills.newbill.other_charge" ng-disabled="!userbills.newbill.other_charge_applied">
+                                    </div>
+                                    <div class="input-field col s12 m4">
+                                        <label for="othchargecomment">Comment</label>
+                                        <input id="othchargecomment" type="text" data-ng-model="userbills.newbill.other_charge_comment" ng-disabled="!userbills.newbill.other_charge_applied">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m12">                                     
+                                        <div class="right">
+                                         <button class="waves-effect waves-light btn left" data-ng-click="userbills.view.showBillList=true;userbills.view.newBill1=false">Back</button>&nbsp;&nbsp;&nbsp;
+                                        <button class="waves-effect waves-light btn right" type="submit">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="new-bill-2" data-ng-show="userbills.view.newBill2">
+                <div class="col s12 m8">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Bill Summary</span>
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Bill Date</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    {{userbills.newbill.generated_on | convertdate}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Period</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    {{userbills.newbill.bill_st_dt | convertdate}} - {{userbills.newbill.bill_ed_dt | convertdate}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>House Rent</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    &#8377; {{userbills.newbill.house_rent}}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Electricity Bill</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    &#8377; {{userbills.newbill.electricity_bill}}
+                                    <br> (Units Consumed : {{userbills.newbill.elec_units_consumed}})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Water Bill</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    &#8377; {{userbills.newbill.water_charge}}
+                                </div>
+                            </div>
+                            <div class="row" data-ng-if="userbills.newbill.other_charge_applied">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Others</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    &#8377; {{userbills.newbill.other_charge}}
+                                    <br> ({{userbills.newbill.other_charge_comment}})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m4">
+                                    <b><label>Total</label></b>
+                                </div>
+                                <div class="input-field col s12 m8">
+                                    &#8377; {{userbills.newbill.total_bill}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m12">
+                                    
+                                <div class="right">
+                                     <button  ng-if="!newBillIsSaved" class="waves-effect waves-light btn left" data-ng-click="userbills.view.newBill2=false ;userbills.view.newBill1=true">Back</button>
+                                     &nbsp;&nbsp;&nbsp;
+                                     <button ng-if="!newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="generateNewBill()">Generate</button>
+                                     <button ng-if="newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="downloadBill(userbills.newbill)">Download</button>
+                                </div>
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="update-status" class="modal">
+    <div class="modal-content">
+        <div class="row" style="margin-top: 23px;height: 120px">
+            <div class="col s3"></div>
+            <div class="col s3">
+                <b><h5>Change Status</h5></b>
+            </div>
+            <div class="col s3">
+                <select data-ng-model="updateStatus.value">
+                    <option value="" disabled selected required>Select status</option>
+                    <option value="NEW">New</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="PAID">Paid</option>
+                </select>
+            </div>
+
+            <div class="col s3"></div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href class="waves-effect waves-green btn-flat" data-ng-click="updateStatus.save()">Save</a>
+    </div>
+</div>
+
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15
+            //format:'dd/mm/yy'
+    });
+    $('.collapsible').collapsible();
+    $('select').material_select();
+    $('.modal').modal();
+</script>

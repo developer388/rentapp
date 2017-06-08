@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rent App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jsPdf.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular.ui.router.min.js"></script>
+    <script src="assets/js/angular-cookies.js"></script>
+</head>
+
+<body ng-app="app">
+    <nav class="light-blue lighten-1" role="navigation" data-ng-controller="nav">
+        <div class="nav-wrapper container" data-ng-show="user.isAuthenticated">
+            <a id="logo-container" href class="brand-logo">{{user.type=='admin'?'Admin':'User'}}</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{user.name}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href ui-sref="account">Account</a></li>
+                <li class="divider"></li>
+                <li><a href data-ng-click="logout()">Log Out</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div ui-view>
+
+    </div>
+
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+    <script src="app/script.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controller/nav.js"></script>
+    <script src="app/service/auth.js"></script>
+    <script src="app/controller/login.js"></script>
+    <script src="app/service/admin.js"></script>
+    <script src="app/controller/admin.js"></script>
+    <script src="app/service/account.js"></script>
+    <script src="app/controller/account.js"></script>
+    <script src="app/filter/filter.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+.errmsg {
+	color: red !important;
+}
+
+.nopadding {
+	padding: 0px !important;
+}
+
+.noverticalmargin{
+	margin-top: 0px !important; 
+    margin-bottom: 0px !important;
+}

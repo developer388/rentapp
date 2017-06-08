@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m2">
+
+            </div>
+
+            <div class="col s12 m8">
+                <div class="card" style="height: 480px">
+                    <div class="card-content">
+                        <div class="row noverticalmargin">
+                            <div class="col s6">
+                                <span class="card-title grey-text text-darken-4"><b>Account Info</b></span>
+                            </div>
+                            <div class="col s6">
+                                <a class="btn btn-floating btn-large cyan pulse activator right" style="margin-top: -13px"><i class="material-icons">edit</i></a>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col s3">
+
+                            </div>
+                            <div class="col s6">
+                                <div class="row">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="input-field col s12 m2">
+                                        <b>Name</b>
+                                    </div>
+                                    <div class="input-field col s12 m10">
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{user.name}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 m2">
+                                        <b>Email</b>
+                                    </div>
+                                    <div class="input-field col s12 m10">
+                                        :&nbsp;&nbsp;&nbsp;&nbsp;{{user.email}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s3">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+
+                        <ul id="tabs-swipe" class="tabs">
+                            <li class="tab col s3"><a class="active " href="#T1"><b style="color:#444">Account Info</b></a></li>
+                            <li class="tab col s3"><a href="#T2"><b style="color:#444">Password</b></a></li>
+                        </ul>
+                        <div id="T1" class="col s12" style="padding-top: 20px">
+
+                            <div class="row">
+                                <span class="left">Name</span>
+                                <input type="text" class="validate" data-ng-model="userinfo.data.name" required>
+                            </div>
+
+                            <div class="row">
+                                <span class="left">Email</span>
+                                <input type="email" class="validate" data-ng-model="userinfo.data.email" required>
+
+                            </div>
+
+                            <div class="row">
+                                <button class="btn waves-effect waves-light right" data-ng-click="userinfo.save()">Save
+                                </button>
+                            </div>
+
+                        </div>
+                        <div id="T2" class="col s12" style="padding-top: 20px; ">
+                            <form data-ng-submit="password.save()">
+                            <div class="row">
+                                <div class="col s8">
+                                    <span class="left">Current Password</span>
+                                    <input type="Password" class="validate" data-ng-model="password.data.current" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s8">
+                                    <span class="left">New Password</span>
+                                    <input type="Password" class="validate" data-ng-model="password.data.new" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s8">
+                                    <span class="left">Confirm Password</span>
+                                    <input type="Password" class="validate" data-ng-model="password.data.confirm" required>
+                                </div>
+                                <div class="col s4">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="btn waves-effect waves-light right">Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col s12 m2">
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+
+    <div class="section">
+
+    </div>
+</div>
+
+<script>
+    $('ul.tabs').tabs();
+</script>
