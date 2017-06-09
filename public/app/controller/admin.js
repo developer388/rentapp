@@ -146,9 +146,15 @@ app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,a
 			'elec_units_consumed' : ''+billInfo["elec_units_consumed"],
 			'electricity_bill'    : ''+billInfo["electricity_bill"],
 			'water_charge'        : ''+billInfo["water_charge"],
+			'other_charge_applied':    billInfo["other_charge_applied"],
 			'total_bill'          : ''+billInfo["total_bill"]
-		};
 
+		};
+		if(billInfo["other_charge_applied"]){
+			bill["other_charge"] = ''+billInfo["other_charge"];
+			bill["other_charge_comment"] = billInfo["other_charge_comment"];
+		}
+		
 		generatePDF(bill);
 	}
 

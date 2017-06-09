@@ -70,7 +70,15 @@ function generatePDF(bill) {
 	doc.text(125, 179.5, bill.elec_units_consumed+" X "+bill.elec_unit_charge);
 	doc.text(165, 179.5, bill.electricity_bill);
 	doc.text(165, 187.5, bill.water_charge);
+	doc.text(165, 187.5, bill.water_charge);
+	
+	if(bill.other_charge_applied){
+	 doc.text(27, 195.5, "- ("+bill.other_charge_comment+")");
+	 doc.text(165, 195.5, bill.other_charge);
+	}
+	else
 	doc.text(165, 195.5, "0");
+	
 	doc.setFontStyle("bold");
 	doc.text(136, 203.5, "Total");
 	doc.text(165, 203.5, bill.total_bill);
