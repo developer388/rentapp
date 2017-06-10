@@ -23,6 +23,6 @@ app.use('/api/auth',auth);
 app.use('/api/admin', admin);
 app.use('/api/user', user);
 
-app.listen(config.app.port,function () {
+app.listen(process.env.port||config.app.port,function () {
 	console.log('Server started on port :'+config.app.port);
 });
