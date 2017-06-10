@@ -15,7 +15,7 @@ var config ={
             connection_string : process.env.MONGODB_URI
 		},
 		app:{
-			port:process.env.PORT,
+			port: process.env.PORT,
 			authsecret : 'nickhil388@hotmail'
 		}	
 	}

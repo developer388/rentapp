@@ -8,12 +8,7 @@ var admin = require('./app/routes/admin')
 var user = require('./app/routes/user');
 var app = express();
 
-mongoose.connect('mongodb://ds115712.mlab.com:15712/heroku_rhhb4652',
-{
-  db: { native_parser: true },
-   user: 'rentapp',
-  pass: 'quickstart'
-});
+mongoose.connect(config.db.connection_string);
 
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
