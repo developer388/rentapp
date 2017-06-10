@@ -1,5 +1,5 @@
 app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,adminSrvc) {
-	console.log('admin controller loaded');
+//	console.log('admin controller loaded');
 	$scope.user
 	$scope.statusmsg = ''
 	$scope.userList = []
@@ -74,8 +74,7 @@ app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,a
 			  $scope.userbills.newbill = JSON.parse(JSON.stringify($scope.userbills.data.pricing));
 			  $scope.userbills.newbill.generated_on = new Date();
 			}
-			console.log($scope.userbills)
-		
+			
 		})
 
 	}

@@ -16,6 +16,7 @@ app.service('auth',function ($rootScope,$http,$cookies) {
 		user = JSON.parse(atob(token.split('.')[1]));
 		user.isAuthenticated = true;
 		$rootScope.user = user;
+		$rootScope.history = {'states':[],'isPreviousState':false};
 		return user.type;
 	}
 

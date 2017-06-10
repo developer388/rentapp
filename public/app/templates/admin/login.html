@@ -1,48 +1,49 @@
 <div class="container">
     <div class="section">
-      <div class="row">
-        <div class="col s12 m2">
-          
-        </div>
+        <div class="row">
+            <div class="col s12 m2">
 
-        <div class="col s12 m8">          
-          <div class="card">
-            <div class="card-content">
-             <form data-ng-submit="doLogin()">
-              <span class="card-title"></span>
-              <div class="row">
-               <div class="input-field">
-   				 <label for="email">Email</label>
-   				 <input id="email" type="email" class="validate"  data-ng-model="user.email" required>
-          	   </div>
-          	   </div>
-          	   <div class="row">
-          	   <div class="input-field">	  
-        	     <label for="password">Password</label>    
-                 <input id="password" type="password" class="validate" data-ng-model="user.password" required>         
-               </div>
-               </div>
-               <div class="row">
-               <div class="input-field">	 
-                <p class="errmsg left">{{errormsg}}</p> 
-        	      <button class="btn waves-effect waves-light right" type="submit" name="action">Login
-   				      </button>  
-               </div>
-               </div>
-               </form>
             </div>
-          </div>
-		</div>
 
-        <div class="col s12 m2">
-          
+            <div class="col s12 m8">
+                <div class="card">
+                    <div class="card-content">
+                        <form data-ng-submit="doLogin()">
+                            <span class="card-title"></span>
+                            <div class="row">
+                                <div class="input-field">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="validate" data-ng-model="user.email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" class="validate" data-ng-model="user.password" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <p class="errmsg left">{{errormsg}}</p>
+                                    <button class="btn waves-effect waves-light right" type="submit" name="action">Login
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m2">
+                
+            </div>
         </div>
-      </div>
 
     </div>
-    <br><br>
+    <br>
+    <br>
 
     <div class="section">
 
     </div>
-  </div>
+</div>

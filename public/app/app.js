@@ -58,18 +58,22 @@ app.config(function ($stateProvider,$urlRouterProvider,$httpProvider) {
 });
 
 app.run(function($rootScope,$state,$transitions,auth){
-	// $transitions.onSuccess({ },function(){
-	// 	console.log('Is isUserAuthenticated : '+auth.isUserAuthenticated());
-	// 	if(!auth.isUserAuthenticated()){
-	// 		event.preventDefault(); 
-	// 		$state.go('login');
-	// 	}
-	// });
+
     $transitions.onStart({}, function(trans) {
 	    if (!auth.isUserAuthenticated())
 	      $state.go('login');
-	 });
+	    else{	      
+      	    if((trans._treeChanges.exiting.length)&&(trans._treeChanges.exiting[0].state.name!='login')&&(!$rootScope.history.isPreviousState))
+        	 $rootScope.history.states.push(trans._treeChanges.exiting[0].state.name);
+        	else
+        	$rootScope.history.isPreviousState=false;
+	    }
+	});
 
+    $transitions.onExit({}, function(trans) {
+    //	console.log($state)
+       
+    })
 
 	$rootScope.$on('logOut',function(status){
 		$state.go('login');

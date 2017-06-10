@@ -8,9 +8,8 @@ var admin = require('./app/routes/admin')
 var user = require('./app/routes/user');
 var app = express();
 
-mongoose.connect(config.db.connection_string, function(err){
-	console.log(err);
-});
+mongoose.connect(config.db.connection_string);
+
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({extended:true})); 
@@ -19,6 +18,6 @@ app.use('/api/auth',auth);
 app.use('/api/admin', admin);
 app.use('/api/user', user);
 
-app.listen(process.env.PORT|| config.app.port,function () {
+app.listen(config.app.port,function () {
 	console.log('Server started on port :'+config.app.port);
 });

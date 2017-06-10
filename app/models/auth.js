@@ -32,10 +32,10 @@ module.exports = {
 								cb({message:'account inactive'},null)
 						}
 					   else
-					   	cb({message:'incorrect password'},null)
+					   	cb({message:'Incorrect email or password.'},null)
 					}	
 					else
-					   cb({message:'account does not exists'},null)
+					   cb({message:'Account does not exists'},null)
 				}
 			});
 		}
