@@ -12,10 +12,10 @@ var config ={
 
 	production :{
 		db :{
-            connection_string : 'mongodb://rentapp:quickstart@ds115712.mlab.com:15712/heroku_rhhb4652'
+            connection_string : process.env.MONGODB_URI
 		},
 		app:{
-			port:8080,
+			port:process.env.PORT,
 			authsecret : 'nickhil388@hotmail'
 		}	
 	}
