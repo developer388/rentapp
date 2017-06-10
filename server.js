@@ -8,7 +8,9 @@ var admin = require('./app/routes/admin')
 var user = require('./app/routes/user');
 var app = express();
 
-mongoose.connect(config.db.connection_string);
+mongoose.connect(config.db.connection_string, function(err){
+	console.log(err);
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use(body_parser.json());
