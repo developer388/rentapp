@@ -28,62 +28,62 @@
                             <div class="collapsible-header"><i class="material-icons">description</i>{{bill.bill_st_dt | convertdate }}</div>
                             <div class="collapsible-body">
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Period</label></b>
                                     </div>
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         {{bill.bill_st_dt | convertdate}} - {{bill.bill_ed_dt | convertdate}}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>House Rent</label></b>
                                     </div>
-                                    <div class="input-field col s12 m8">
+                                    <div class="input-field col s4">
                                         &#8377; {{bill.house_rent}}
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Electricity Bill</label></b>
                                     </div>
-                                    <div class="input-field col s12 m8">
+                                    <div class="input-field col s8">
                                         &#8377; {{bill.electricity_bill}}
                                         <br> (Units Consumed : {{bill.elec_units_consumed}})
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Water Bill</label></b>
                                     </div>
-                                    <div class="input-field col s12 m8">
+                                    <div class="input-field col s8">
                                         &#8377; {{bill.water_charge}}
                                     </div>
                                 </div>
                                 <div class="row" data-ng-if="bill.other_charge_applied">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Others</label></b>
                                     </div>
-                                    <div class="input-field col s12 m8">
+                                    <div class="input-field col s8">
                                         &#8377; {{bill.other_charge}}
                                         <br> ({{bill.other_charge_comment}})
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Total</label></b>
                                     </div>
-                                    <div class="input-field col s12 m8">
+                                    <div class="input-field col s8">
                                         &#8377; {{bill.total_bill}}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <b><label>Status</label></b>
                                     </div>
-                                    <div class="input-field col s12 m4">
+                                    <div class="input-field col s4">
                                         <a href class="chip ng-binding" data-ng-class="{'blue-text':bill.status=='NEW', 'red-text':bill.status=='PENDING', 'green-text':bill.status=='PAID'}" data-ng-click="updateStatus.init(bill._id,$index)">            
                                   {{bill.status}}
                                     </a>
