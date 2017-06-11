@@ -1,4 +1,4 @@
-var env='local'
+var env='production'
 var config ={
 	local :{
 		db :{
