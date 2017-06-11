@@ -14,7 +14,7 @@ if (cluster.isMaster) {
     var i=0;
     for (i=0; i<cpu_cores; i++)
     cluster.fork();
- 	console.log('Master process with id '+process.pid+' has forked '+i+' workers.');   
+ 	console.log('Server started on port '+config.app.port+' with '+i+' workers.');   
 } else {
 	var app = express();
 	app.use(express.static(__dirname + '/public'));
@@ -29,7 +29,7 @@ if (cluster.isMaster) {
 	app.use('/api/user', user);
 
 	app.listen(config.app.port,function () {
-		console.log('Worker '+process.pid+' listening on port :'+config.app.port);
+		console.log('Worker started, pid '+process.pid+'.');
 	});
 }
 

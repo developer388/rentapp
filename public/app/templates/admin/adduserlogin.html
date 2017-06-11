@@ -10,20 +10,20 @@
             <div class="card-content">
              <form data-ng-submit="addLogin()">
               <span class="card-title">
-                Add User
+               <b> Add User</b>
               </span>
 
                <div class="row">
                  <div class="input-field col s12 ">
-                     <label for="name">Name</label>
-                     <input id="name" type="text" class="validate"  data-ng-model="user.name" required>
+                     <span for="name">Name</span>
+                     <input id="name" type="text" class="validate"  data-ng-model="newUserInfo.name" required>
                  </div>
                </div>
                
                <div class="row">
                  <div class="input-field col s12 ">
-             				 <label for="email">Email</label>
-             				 <input id="email" type="email" class="validate"  data-ng-model="user.email" required>
+             				 <span for="email">Email</span>
+             				 <input id="email" type="email" class="validate"  data-ng-model="newUserInfo.email" required>
             	   </div>
           	   </div>
 
@@ -31,14 +31,14 @@
           	   <div class="row">
                  <div class="input-field col s12 m6">
                     <div class="input-field">    
-                        <label for="password">Password</label>    
-                        <input id="password" type="password" class="validate" data-ng-model="user.password" required>            
+                        <span for="password">Password</span>    
+                        <input id="password" type="password" class="validate" data-ng-model="newUserInfo.password" required>            
                      </div>
                  </div>
                  <div class="input-field col s12 m6">
                     <div class="input-field">    
-                        <label for="cpassword">Confirm Password</label>    
-                        <input id="cpassword" type="password" class="validate" data-ng-model="user.cpassword" required>           
+                        <span for="cpassword">Confirm Password</span>    
+                        <input id="cpassword" type="password" class="validate" data-ng-model="newUserInfo.cpassword" required>           
                      </div>
                  </div>
             	   
@@ -47,7 +47,7 @@
                <div class="row">
                 <div class="input-field col s12 m6">
                         
-                    <select data-ng-model="user.type">
+                    <select data-ng-model="newUserInfo.type">
                       <option value="" disabled selected required>Select user type</option>
                       <option value="user">User</option>
                       <option value="admin">Admin</option>
@@ -56,14 +56,13 @@
               
                </div>                
                 <div class="input-field col s12 m6">
-                          <input type="checkbox" id="active" data-ng-model="user.active" required/>
+                          <input type="checkbox" id="active" data-ng-model="newUserInfo.active" required/>
                           <label for="active">Active</label>                   
                </div>
                </div>
                   
                <div class="row">
                <div class="input-field">	 
-                <p class="errmsg">{{statusmsg}}</p> 
                 <div class="right">
                   <button class="btn waves-effect waves-light" ui-sref="admindashboard">Back
                   </button>

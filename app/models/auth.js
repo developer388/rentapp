@@ -29,7 +29,7 @@ module.exports = {
 					    		cb(null,{message :'login success', data: {'token':token}});
 					    	}
 					    	else
-								cb({message:'account inactive'},null)
+								cb({message:'Account inactive'},null)
 						}
 					   else
 					   	cb({message:'Incorrect email or password.'},null)

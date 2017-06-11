@@ -85,15 +85,13 @@
                                     </div>
                                     <div class="input-field col s12 m4">
                                         <a href class="chip ng-binding" data-ng-class="{'blue-text':bill.status=='NEW', 'red-text':bill.status=='PENDING', 'green-text':bill.status=='PAID'}" data-ng-click="updateStatus.init(bill._id,$index)">            
-
                                   {{bill.status}}
-
-                              </a>
+                                    </a>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s12 m12 offset-m8">
-                                        <button class="waves-effect waves-light btn right-align" data-ng-click="downloadBill(bill)">Download</button>
+                                    <div class="input-field col s12">
+                                        <button class="waves-effect waves-light btn right" data-ng-click="downloadBill(bill)">Download PDF</button>
                                     </div>
                                 </div>
 
@@ -141,7 +139,7 @@
                                         <b><label>House Rent</label></b>
                                     </div>
                                     <div class="input-field col s12 m8">
-                                        <input type="number" data-ng-model="userbills.newbill.house_rent" min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                        <input type="number" data-ng-model="userbills.newbill.house_rent" min="0"  class="validate" ng-disabled="userbills.useStandardPricing" required>
                                     </div>
                                 </div>
 
@@ -152,11 +150,11 @@
 
                                     <div class="input-field col s12 m4">
                                         <label for="readingstart">Last Reading</label>
-                                        <input id="readingstart" type="number" data-ng-model="userbills.newbill.elec_last_reading" min="0" class="validate" required>
+                                        <input id="readingstart" type="number" step="any" data-ng-model="userbills.newbill.elec_last_reading" min="0" class="validate" required>
                                     </div>
                                     <div class="input-field col s12 m4">
                                         <label for="readingend">New Reading</label>
-                                        <input id="readingend" type="number" data-ng-model="userbills.newbill.elec_new_reading" min="0" class="validate" required>
+                                        <input id="readingend" type="number" step="any" data-ng-model="userbills.newbill.elec_new_reading" min="0" class="validate" required>
                                     </div>
                                 </div>
 
@@ -178,7 +176,7 @@
                                         <b><label>Per Unit Charge</label></b>
                                     </div>
                                     <div class="input-field col s12 m8">
-                                        <input type="number" data-ng-model="userbills.newbill.elec_unit_charge" min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                        <input type="number" data-ng-model="userbills.newbill.elec_unit_charge" min="0" step="any" class="validate" ng-disabled="userbills.useStandardPricing" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -186,7 +184,7 @@
                                         <b><label>Water Bill</label></b>
                                     </div>
                                     <div class="input-field col s12 m8">
-                                        <input type="number" data-ng-model="userbills.newbill.water_charge  " min="0" class="validate" ng-disabled="userbills.useStandardPricing" required>
+                                        <input type="number" data-ng-model="userbills.newbill.water_charge  " min="0" step="any" class="validate" ng-disabled="userbills.useStandardPricing" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -205,10 +203,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s12 m12">                                     
+                                    <div class="input-field col s12 m12">
                                         <div class="right">
-                                         <button class="waves-effect waves-light btn left" data-ng-click="userbills.view.showBillList=true;userbills.view.newBill1=false">Back</button>&nbsp;&nbsp;&nbsp;
-                                        <button class="waves-effect waves-light btn right" type="submit">Next</button>
+                                            <button class="waves-effect waves-light btn left" data-ng-click="userbills.view.showBillList=true;userbills.view.newBill1=false">Back</button>&nbsp;&nbsp;&nbsp;
+                                            <button class="waves-effect waves-light btn right" type="submit">Next</button>
                                         </div>
                                     </div>
                                 </div>
@@ -285,15 +283,14 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m12">
-                                    
-                                <div class="right">
-                                     <button  ng-if="!newBillIsSaved" class="waves-effect waves-light btn left" data-ng-click="userbills.view.newBill2=false ;userbills.view.newBill1=true">Back</button>
-                                     &nbsp;&nbsp;&nbsp;
-                                     <button ng-if="!newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="generateNewBill()">Generate</button>
-                                     <button ng-if="newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="downloadBill(userbills.newbill)">Download</button>
-                                </div>
-                                   
-                                    
+
+                                    <div class="right">
+                                        <button ng-if="!newBillIsSaved" class="waves-effect waves-light btn left" data-ng-click="userbills.view.newBill2=false ;userbills.view.newBill1=true">Back</button>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <button ng-if="!newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="generateNewBill()">Generate</button>
+                                        <button ng-if="newBillIsSaved" class="waves-effect waves-light btn right" data-ng-click="downloadBill(userbills.newbill)">Download PDF</button>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

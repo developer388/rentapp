@@ -47,10 +47,8 @@ module.exports = {
 				created_on  :       new Date().getTime(),
 				last_login 	: 		new Date().getTime()
 			};
-			console.log(logindata)
 			var newlogin = new login(logindata);
 			newlogin.save(function(err){
-				console.log(err)
 				if(err)
 					cb({message:'DB Error'},null)
 				else

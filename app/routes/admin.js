@@ -21,7 +21,7 @@ router.use(function(req,res,next){
 		});
 		
 	}else
-	  sendResponse('token not found',{'message':'token not found'},false,res);
+	  sendResponse('Authentication failed',{'message':'Authentication failed'},false,res);
 })
 
 router.get('/user', function(req,res){

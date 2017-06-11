@@ -1,7 +1,6 @@
 app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,adminSrvc) {
 //	console.log('admin controller loaded');
-	$scope.user
-	$scope.statusmsg = ''
+	$scope.newUserInfo
 	$scope.userList = []
 	$scope.newUserPricing = {};
 	$scope.newBillIsSaved = false;
@@ -9,8 +8,17 @@ app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,a
 	$scope.updateStatus = {value:''};
 	
 	$scope.addLogin = function(){
-		adminSrvc.addLogin($scope.user).success(function(res){
-			$scope.statusmsg=res.message;
+		if($scope.newUserInfo.cpassword!=$scope.newUserInfo.password){
+			Materialize.toast('New password and confirm password do not match.', 4000);
+		    return false;
+		}
+		
+		adminSrvc.addLogin($scope.newUserInfo).success(function(res){
+			if(res.success)
+			   $scope.newUserInfo={};
+			
+			Materialize.toast(res.message, 4000);
+			
 		})	
 	}
 
@@ -86,9 +94,9 @@ app.controller('admin',function ($scope,$rootScope,$state,$stateParams,$filter,a
 	$scope.initNewBillData=function(){
 		$scope.userbills.view.newBill1=false;
 		$scope.userbills.view.newBill2=true;
-		$scope.userbills.newbill.elec_units_consumed = ($scope.userbills.newbill.elec_new_reading-$scope.userbills.newbill.elec_last_reading);
-		$scope.userbills.newbill.electricity_bill = $scope.userbills.newbill.elec_units_consumed*$scope.userbills.newbill.elec_unit_charge;
-		$scope.userbills.newbill.total_bill = $scope.userbills.newbill.house_rent+$scope.userbills.newbill.electricity_bill+$scope.userbills.newbill.water_charge + ($scope.userbills.newbill.other_charge_applied? $scope.userbills.newbill.other_charge: 0);
+		$scope.userbills.newbill.elec_units_consumed =  Math.round(($scope.userbills.newbill.elec_new_reading-$scope.userbills.newbill.elec_last_reading));
+		$scope.userbills.newbill.electricity_bill =  Math.round($scope.userbills.newbill.elec_units_consumed*$scope.userbills.newbill.elec_unit_charge);
+		$scope.userbills.newbill.total_bill =  Math.round($scope.userbills.newbill.house_rent+$scope.userbills.newbill.electricity_bill+$scope.userbills.newbill.water_charge + ($scope.userbills.newbill.other_charge_applied? $scope.userbills.newbill.other_charge: 0));
 		
 		newBill = JSON.parse(JSON.stringify($scope.userbills.newbill));
 		newBill.email = $scope.userbills.data.email;
