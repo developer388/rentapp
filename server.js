@@ -7,13 +7,7 @@ var utils = require('./app/utils');
 var auth = require('./app/routes/auth')
 var admin = require('./app/routes/admin')
 var user = require('./app/routes/user');
-mongoose.connect(config.db.connection_string,
-{
-  db: { native_parser: true },
-  user: config.db.username,
-  pass: config.db.password
- });
-
+mongoose.connect(config.db.connection_string,{db: { native_parser: true }, user: config.db.username, pass: config.db.password });
 
 if (cluster.isMaster) { 
 	var cpu_cores = require('os').cpus().length
